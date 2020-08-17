@@ -1,0 +1,70 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+    <div class="card table-container">
+
+        <div class="header">
+        
+        <div class="new-button">
+            <a href="/instructors/create"><span>+</span>Novo</a>
+        </div>
+        <form action="/instructors" method="GET">
+            <input value="{{filter}}" type="text" name="filter" placeholder="Filtrar por nome ou atendimento">
+            <button type="submit">Filtrar</button>
+        </form>
+
+        </div>
+
+        
+        <table width="100%">
+
+            <thead>
+                    <tr>
+                        <th>Instructor</th>    
+                        <th>Atendimento</th>    
+                        <th>Alunos</th>    
+                        <th>Ação</th>
+                    <tr>
+
+                </thead>
+        
+            <tbody>
+
+                {% for instructor in instructors %}
+                    <tr>
+                        <td>
+                            <span style="background-image: url('{{instructor.avatar_url}}')"></span>
+                            {{ instructor.name }}      
+                        </td>
+                        
+                    <td>
+                        {% for service in instructor.services %}
+                            <span>{{ service }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>{{instructor.total_students}}</td>
+                        
+                        
+                        <td><a href="/instructors/{{instructor.id}}">VER</a></td>
+                    
+                    </tr>
+
+
+
+                    
+                {% endfor %}
+               
+            </tbody>
+
+        </table>
+
+        <div class="pagination"
+            data-page={{pagination.page}}
+            data-total={{pagination.total}}
+            data-filter={{filter}}
+        >
+        </div>
+    
+    </div>
+    
+{% endblock content %}

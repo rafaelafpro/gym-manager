@@ -1,0 +1,21 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+    <form class="card" method="POST" action="/instructors">
+        <div class="avatar-section">
+            <section class="avatar" style="background: url('https://icon-library.com/images/image-placeholder-icon/image-placeholder-icon-13.jpg') no-repeat center / cover;"></section>
+        </div>
+        
+        <section class="details">
+            
+            <h3>Novo Instrutor</h3>
+
+            {% include 'instructors/fields.njk' %}
+
+        </section>
+    
+    </form>
+            
+
+{% endblock content %}
